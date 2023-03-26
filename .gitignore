@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Poetry
+.venv/
+.venv3/
+.poetry/
+*.egg-info/
+dist/
+build/
+
+# data
+data/*
+data
+
+
+# Environment variables
+.env
+
+# Other
+*.log
+*.bak
+*.swp
+
+
+# intellij
+.idea/*
+.idea
+

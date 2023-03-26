@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "chatgpt"
+version = "0.1.0"
+description = ""
+authors = ["kianfeng <qianfeng2021@gmail.com>"]
+readme = "README.md"
+packages = [
+    { include = "src", from = "." },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+openai = "^0.27.2"
+fastapi = "^0.95.0"
+python-dotenv = "^1.0.0"
+uvicorn = "^0.21.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
