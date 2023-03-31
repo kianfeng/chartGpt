@@ -26,28 +26,12 @@ poetry shell
 
 ```
 
-## Project Structure
-Below is the project structure for `YOUR_PROJECT_NAME`:
-YOUR_PROJECT_NAME/
-│
-├── src/
-│   ├── __init__.py
-│   ├── main.py
-│   └── other_module.py
-│
-├── tests/
-│   ├── __init__.py
-│   └── test_main.py
-│
-├── pyproject.toml
-├── README.md
-└── .gitignore
-
 ## Usage
 After installing the dependencies and activating the virtual environment, you can run the project using:
 
 ```shell
-poetry run uvicorn src.main:app --reload
+aws configure   # configure your aws credentials
+poetry run uvicorn src.main:app --reload # run the project
 ```
 http://127.0.0.1:8000/docs
 

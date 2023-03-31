@@ -1,14 +1,27 @@
 '''
-depency module of the project
+dependency module of the project
 '''
 import openai
-import os
-from dotenv import load_dotenv
+from fastapi import Depends
 
-# Load the environment variables from the .env file
-load_dotenv()
+from src.aws.secret_manager import SecretManagerClient
 
-def openai_dependency():
-  openai.organization = os.getenv("OPENAI_API_ORG")
-  openai.api_key = os.getenv("OPENAI_API_KEY")
+
+def get_secret_manager_client() -> SecretManagerClient:
+  ''' Dependency for the SecretManagerClient'''
+  return SecretManagerClient()
+
+def get_openai_secret_manager(
+  openapi_secret_manager: SecretManagerClient = Depends(get_secret_manager_client)
+) -> dict:
+  ''' Dependency for the OpenAI API'''
+  return openapi_secret_manager.get_secret_string("openAPI")
+
+
+def openai_dependency(
+    openai_client_secret_manager: dict = Depends(get_openai_secret_manager)
+) -> openai:
+  """ Dependency for the OpenAI API """
+  openai.organization = openai_client_secret_manager['OPENAI_API_ORG']
+  openai.api_key = openai_client_secret_manager['OPENAI_API_KEY']
   return openai
